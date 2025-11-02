@@ -315,6 +315,40 @@ st.markdown("""
     }
     </style>
 """, unsafe_allow_html=True)
+# ...existing code...
+st.markdown("""
+    <style>
+    /* Dark-mode tweaks — rend les boîtes semi‑transparentes pour améliorer le contraste en mode sombre */
+    @media (prefers-color-scheme: dark), [data-theme="dark"] {
+        .song-card, .import-section, .feature-card {
+            background: rgba(255,255,255,0.04) !important;
+            border-left: 5px solid rgba(29,185,84,0.6) !important;
+            color: #e6e6e6 !important;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.6) !important;
+            border: 1px solid rgba(255,255,255,0.02) !important;
+        }
+        .song-card:hover {
+            background: rgba(255,255,255,0.06) !important;
+            transform: translateX(6px) !important;
+        }
+        .feature-card, .import-section {
+            background: rgba(255,255,255,0.03) !important;
+        }
+        .track-info {
+            background: rgba(255,255,255,0.02) !important;
+            color: #e6e6e6 !important;
+            border-left-color: #1DB954 !important;
+        }
+        .stButton>button {
+            background: rgba(255,255,255,0.05) !important;
+            color: #e6e6e6 !important;
+            border: none !important;
+        }
+    }
+    </style>
+""", unsafe_allow_html=True)
+# ...existing code...
+
 
 # ===== UI =====
 st.markdown('''
