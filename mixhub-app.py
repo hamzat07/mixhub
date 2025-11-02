@@ -313,12 +313,8 @@ st.markdown("""
         border-radius: 8px;
         box-shadow: 0 4px 12px rgba(0,0,0,0.2);
     }
-    </style>
-""", unsafe_allow_html=True)
-# ...existing code...
-st.markdown("""
-    <style>
-    /* Dark-mode tweaks — rend les boîtes semi‑transparentes pour améliorer le contraste en mode sombre */
+    
+    /* Dark-mode tweaks */
     @media (prefers-color-scheme: dark), [data-theme="dark"] {
         .song-card, .import-section, .feature-card {
             background: rgba(255,255,255,0.04) !important;
@@ -347,8 +343,6 @@ st.markdown("""
     }
     </style>
 """, unsafe_allow_html=True)
-# ...existing code...
-
 
 # ===== UI =====
 st.markdown('''
@@ -498,19 +492,46 @@ if st.session_state.songs:
             st.markdown("---")
             
             video_id = video_info['id']
+            
+            # JavaScript to auto-advance to next song
+            next_song_script = ""
+            if current_idx < len(songs) - 1:
+                next_song_script = f"""
+                <script>
+                    const iframe = document.querySelector('iframe');
+                    if (iframe) {{
+                        const player = iframe.contentWindow;
+                        // Listen for video end event via postMessage
+                        window.addEventListener('message', function(e) {{
+                            if (e.data && typeof e.data === 'string') {{
+                                const data = JSON.parse(e.data);
+                                if (data.event === 'onStateChange' && data.info === 0) {{
+                                    // Video ended, trigger next song
+                                    const nextButton = window.parent.document.querySelector('button[kind="primary"]');
+                                    if (nextButton && nextButton.textContent.includes('Next')) {{
+                                        nextButton.click();
+                                    }}
+                                }}
+                            }}
+                        }});
+                    }}
+                </script>
+                """
+            
             st.markdown(f"""
                 <iframe 
                     width="100%" 
                     height="100" 
-                    src="https://www.youtube.com/embed/{video_id}?autoplay=0&controls=1&modestbranding=1" 
+                    src="https://www.youtube.com/embed/{video_id}?autoplay=1&controls=1&modestbranding=1&enablejsapi=1" 
                     frameborder="0" 
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                     allowfullscreen
                     style="border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
                 </iframe>
+                {next_song_script}
             """, unsafe_allow_html=True)
             
-            st.info("🎧 **Tip:** Click play to start audio playback")
+            st.success("🎧 **Auto-playing now!**")
         
         st.markdown('</div>', unsafe_allow_html=True)
     else:
