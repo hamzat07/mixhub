@@ -22,7 +22,7 @@ Local Installation
 
 Clone this repository:
 
-bashgit clone https://github.com/yourusername/mixhub.git
+bashgit clone https://github.com/hamza07/mixhub.git
 cd mixhub
 
 Install dependencies:
@@ -31,7 +31,7 @@ bashpip install -r requirements.txt
 
 Create .streamlit/secrets.toml file:
 
-tomlYOUTUBE_API_KEY = "your_youtube_api_key"
+YOUTUBE_API_KEY = "your_youtube_api_key"
 SPOTIFY_CLIENT_ID = "your_spotify_client_id"
 SPOTIFY_CLIENT_SECRET = "your_spotify_client_secret"
 
@@ -46,7 +46,7 @@ Connect your GitHub account
 Select your forked repository
 Add your API keys in Settings → Secrets:
 
-tomlYOUTUBE_API_KEY = "your_youtube_api_key"
+YOUTUBE_API_KEY = "your_youtube_api_key"
 SPOTIFY_CLIENT_ID = "your_spotify_client_id"
 SPOTIFY_CLIENT_SECRET = "your_spotify_client_secret"
 
