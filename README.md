@@ -1,4 +1,6 @@
-🎧 MixHub - Audio Streaming Player
+
+
+🎧 MixHub - Audio Streaming Player   https://mixapp-x7psnbdb2uul5wrgjhe4b3.streamlit.app/
 A beautiful, modern audio streaming application built with Streamlit that integrates with YouTube and Spotify APIs to provide a seamless music listening experience with album artwork.
 
 ✨ Features
